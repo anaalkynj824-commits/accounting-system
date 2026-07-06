@@ -1,0 +1,124 @@
+version: '3.9'
+
+services:
+  # التطبيق الرئيسي / Main Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: accounting-app
+    ports:
+      - "5000:5000"
+    environment:
+      # قاعدة البيانات / Database
+      DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5432/accounting_db}
+      
+      # Aiven PostgreSQL (اختياري)
+      AIVEN_HOST: ${AIVEN_HOST}
+      AIVEN_PORT: ${AIVEN_PORT:-5432}
+      AIVEN_USER: ${AIVEN_USER}
+      AIVEN_PASSWORD: ${AIVEN_PASSWORD}
+      AIVEN_DB: ${AIVEN_DB}
+      AIVEN_SSL: ${AIVEN_SSL:-require}
+      
+      # Flask
+      FLASK_ENV: production
+      FLASK_APP: run.py
+      SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
+      
+      # JWT
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change-me-in-production}
+      
+      # Vercel
+      VERCEL_ENV: ${VERCEL_ENV:-development}
+      VERCEL_URL: ${VERCEL_URL}
+      
+      # البريد الإلكتروني / Email (اختياري)
+      MAIL_SERVER: ${MAIL_SERVER}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USE_TLS: ${MAIL_USE_TLS:-true}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
+    
+    networks:
+      - accounting-network
+    
+    restart: unless-stopped
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+
+  # قاعدة البيانات المحلية / Local PostgreSQL (للتطوير فقط)
+  postgres:
+    image: postgres:15-alpine
+    container_name: accounting-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-accounting_db}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    
+    ports:
+      - "5432:5432"
+    
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/seeds:/docker-entrypoint-initdb.d/seeds:ro
+    
+    networks:
+      - accounting-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis (اختياري - للـ Cache والـ Sessions)
+  redis:
+    image: redis:7-alpine
+    container_name: accounting-redis
+    ports:
+      - "6379:6379"
+    
+    volumes:
+      - redis_data:/data
+    
+    networks:
+      - accounting-network
+    
+    restart: unless-stopped
+    
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_password}
+    
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  accounting-network:
+    driver: bridge
