@@ -1,34 +1,48 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-lang="ar" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام محاسبة وإدارة مالية ذكي</title>
+    <title>نظام محاسبة وإدارة مالية ذكي | Smart Accounting System</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/i18n.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
 </head>
 <body>
     <div class="app-container">
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h2>💼 محاسبتي</h2>
-                <p>نظام إدارة مالية ذكي</p>
+                <h2 data-ar="محاسبتي" data-en="My Accounting">محاسبتي</h2>
+                <p data-ar="نظام إدارة مالية ذكي" data-en="Smart Financial Management System">نظام إدارة مالية ذكي</p>
+            </div>
+            
+            <!-- Theme Switcher -->
+            <div class="theme-switcher">
+                <span class="theme-label" data-ar="المظهر" data-en="Theme">المظهر</span>
+                <button class="theme-toggle-btn" title="Switch Theme">🌙</button>
+            </div>
+            
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="ar">العربية</button>
+                <button class="lang-btn" data-lang="en">English</button>
             </div>
             
             <ul class="nav-menu">
-                <li><a href="#" class="nav-link active" data-page="dashboard">📊 لوحة التحكم</a></li>
-                <li><a href="#" class="nav-link" data-page="customers">👥 العملاء</a></li>
-                <li><a href="#" class="nav-link" data-page="suppliers">🏪 الموردين</a></li>
-                <li><a href="#" class="nav-link" data-page="invoices">📄 الفواتير</a></li>
-                <li><a href="#" class="nav-link" data-page="expenses">💸 المصروفات</a></li>
-                <li><a href="#" class="nav-link" data-page="reports">📈 التقارير</a></li>
-                <li><a href="#" class="nav-link" data-page="ai">🤖 الذكاء الاصطناعي</a></li>
-                <li><a href="#" class="nav-link" data-page="settings">⚙️ الإعدادات</a></li>
+                <li><a href="#" class="nav-link active" data-page="dashboard" data-ar="📊 لوحة التحكم" data-en="📊 Dashboard">📊 لوحة التحكم</a></li>
+                <li><a href="#" class="nav-link" data-page="customers" data-ar="👥 العملاء" data-en="👥 Customers">👥 العملاء</a></li>
+                <li><a href="#" class="nav-link" data-page="suppliers" data-ar="🏪 الموردين" data-en="🏪 Suppliers">🏪 الموردين</a></li>
+                <li><a href="#" class="nav-link" data-page="invoices" data-ar="📄 الفواتير" data-en="📄 Invoices">📄 الفواتير</a></li>
+                <li><a href="#" class="nav-link" data-page="expenses" data-ar="💸 المصروفات" data-en="💸 Expenses">💸 المصروفات</a></li>
+                <li><a href="#" class="nav-link" data-page="reports" data-ar="📈 التقارير" data-en="📈 Reports">📈 التقارير</a></li>
+                <li><a href="#" class="nav-link" data-page="ai" data-ar="🤖 الذكاء الاصطناعي" data-en="🤖 AI Assistant">🤖 الذكاء الاصطناعي</a></li>
+                <li><a href="#" class="nav-link" data-page="settings" data-ar="⚙️ الإعدادات" data-en="⚙️ Settings">⚙️ الإعدادات</a></li>
             </ul>
             
             <div class="sidebar-footer">
-                <a href="#" class="logout-btn">🚪 تسجيل الخروج</a>
+                <a href="#" class="logout-btn" data-ar="🚪 تسجيل الخروج" data-en="🚪 Logout">🚪 تسجيل الخروج</a>
             </div>
         </nav>
         
@@ -37,8 +51,8 @@
             <!-- Top Header -->
             <header class="top-header">
                 <div class="header-left">
-                    <button class="menu-toggle" id="menuToggle">☰</button>
-                    <input type="text" class="search-box" placeholder="ابحث هنا...">
+                    <button class="menu-toggle" id="menuToggle">≡</button>
+                    <input type="text" class="search-box" placeholder="ابحث هنا..." data-ar="ابحث هنا..." data-en="Search here...">
                 </div>
                 
                 <div class="header-right">
@@ -46,7 +60,7 @@
                         <button class="notification-btn">🔔 <span class="notification-badge">3</span></button>
                     </div>
                     <div class="user-profile">
-                        <span class="username">محمد أحمد</span>
+                        <span class="username" data-ar="محمد أحمد" data-en="Mohammed Ahmed">محمد أحمد</span>
                         <img src="assets/images/avatar.png" alt="Profile" class="avatar">
                     </div>
                 </div>
@@ -56,43 +70,43 @@
             <div class="content-area" id="contentArea">
                 <!-- Dashboard Page (Default) -->
                 <div id="dashboard" class="page active">
-                    <h1>لوحة التحكم</h1>
+                    <h1 data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</h1>
                     
                     <!-- KPI Cards -->
                     <div class="kpi-cards">
                         <div class="kpi-card green">
                             <div class="kpi-icon">💰</div>
                             <div class="kpi-content">
-                                <h3>إجمالي الإيرادات</h3>
+                                <h3 data-ar="إجمالي الإيرادات" data-en="Total Revenue">إجمالي الإيرادات</h3>
                                 <p class="kpi-value">250,000 ر.س</p>
-                                <small>هذا الشهر</small>
+                                <small data-ar="هذا الشهر" data-en="This Month">هذا الشهر</small>
                             </div>
                         </div>
                         
                         <div class="kpi-card red">
                             <div class="kpi-icon">💸</div>
                             <div class="kpi-content">
-                                <h3>إجمالي المصروفات</h3>
+                                <h3 data-ar="إجمالي المصروفات" data-en="Total Expenses">إجمالي المصروفات</h3>
                                 <p class="kpi-value">80,000 ر.س</p>
-                                <small>هذا الشهر</small>
+                                <small data-ar="هذا الشهر" data-en="This Month">هذا الشهر</small>
                             </div>
                         </div>
                         
                         <div class="kpi-card blue">
                             <div class="kpi-icon">📈</div>
                             <div class="kpi-content">
-                                <h3>صافي الربح</h3>
+                                <h3 data-ar="صافي الربح" data-en="Net Profit">صافي الربح</h3>
                                 <p class="kpi-value">170,000 ر.س</p>
-                                <small>هذا الشهر</small>
+                                <small data-ar="هذا الشهر" data-en="This Month">هذا الشهر</small>
                             </div>
                         </div>
                         
                         <div class="kpi-card orange">
                             <div class="kpi-icon">👥</div>
                             <div class="kpi-content">
-                                <h3>عدد العملاء</h3>
+                                <h3 data-ar="عدد العملاء" data-en="Total Customers">عدد العملاء</h3>
                                 <p class="kpi-value">45</p>
-                                <small>إجمالي</small>
+                                <small data-ar="إجمالي" data-en="Total">إجمالي</small>
                             </div>
                         </div>
                     </div>
@@ -100,50 +114,50 @@
                     <!-- Charts -->
                     <div class="charts-container">
                         <div class="chart-card">
-                            <h3>الإيرادات والمصروفات</h3>
+                            <h3 data-ar="الإيرادات والمصروفات" data-en="Revenue & Expenses">الإيرادات والمصروفات</h3>
                             <canvas id="revenueChart"></canvas>
                         </div>
                         
                         <div class="chart-card">
-                            <h3>توزيع المصروفات</h3>
+                            <h3 data-ar="توزيع المصروفات" data-en="Expense Distribution">توزيع المصروفات</h3>
                             <canvas id="expenseChart"></canvas>
                         </div>
                     </div>
                     
                     <!-- Recent Invoices -->
                     <div class="recent-section">
-                        <h3>آخر الفواتير</h3>
+                        <h3 data-ar="آخر الفواتير" data-en="Recent Invoices">آخر الفواتير</h3>
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th>رقم الفاتورة</th>
-                                    <th>العميل</th>
-                                    <th>التاريخ</th>
-                                    <th>المبلغ</th>
-                                    <th>الحالة</th>
+                                    <th data-ar="رقم الفاتورة" data-en="Invoice #">رقم الفاتورة</th>
+                                    <th data-ar="العميل" data-en="Customer">العميل</th>
+                                    <th data-ar="التاريخ" data-en="Date">التاريخ</th>
+                                    <th data-ar="المبلغ" data-en="Amount">المبلغ</th>
+                                    <th data-ar="الحالة" data-en="Status">الحالة</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>#001</td>
-                                    <td>محمود محمد</td>
+                                    <td data-ar="محمود محمد" data-en="Mahmoud Mohammed">محمود محمد</td>
                                     <td>2024-01-15</td>
                                     <td>15,000 ر.س</td>
-                                    <td><span class="badge paid">مدفوعة</span></td>
+                                    <td><span class="badge paid" data-ar="مدفوعة" data-en="Paid">مدفوعة</span></td>
                                 </tr>
                                 <tr>
                                     <td>#002</td>
-                                    <td>فاطمة علي</td>
+                                    <td data-ar="فاطمة علي" data-en="Fatima Ali">فاطمة علي</td>
                                     <td>2024-01-14</td>
                                     <td>8,500 ر.س</td>
-                                    <td><span class="badge pending">معلقة</span></td>
+                                    <td><span class="badge pending" data-ar="معلقة" data-en="Pending">معلقة</span></td>
                                 </tr>
                                 <tr>
                                     <td>#003</td>
-                                    <td>أحمد خليل</td>
+                                    <td data-ar="أحمد خليل" data-en="Ahmed Khalil">أحمد خليل</td>
                                     <td>2024-01-13</td>
                                     <td>22,000 ر.س</td>
-                                    <td><span class="badge paid">مدفوعة</span></td>
+                                    <td><span class="badge paid" data-ar="مدفوعة" data-en="Paid">مدفوعة</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -155,6 +169,8 @@
     
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/i18n.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/dashboard.js"></script>
 </body>

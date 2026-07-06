@@ -1,0 +1,244 @@
+/* Dark Mode & Light Mode Theme System */
+
+:root {
+    /* Light Mode Colors */
+    --light-bg: #f5f5f5;
+    --light-sidebar-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --light-text: #333;
+    --light-border: #ddd;
+    --light-card-bg: #ffffff;
+    --light-header-bg: #ffffff;
+    --light-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    --light-hover-bg: #f8f9fa;
+    
+    /* Dark Mode Colors */
+    --dark-bg: #1a1a1a;
+    --dark-sidebar-bg: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+    --dark-text: #e0e0e0;
+    --dark-border: #333;
+    --dark-card-bg: #2a2a2a;
+    --dark-header-bg: #252525;
+    --dark-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    --dark-hover-bg: #333;
+    
+    /* Semantic Colors */
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --danger-color: #f44336;
+    --warning-color: #ff9800;
+    --success-color: #4CAF50;
+    
+    /* Default to Light Mode */
+    --bg-color: var(--light-bg);
+    --text-color: var(--light-text);
+    --sidebar-bg: var(--light-sidebar-bg);
+    --border-color: var(--light-border);
+    --card-bg: var(--light-card-bg);
+    --header-bg: var(--light-header-bg);
+    --shadow: var(--light-shadow);
+    --hover-bg: var(--light-hover-bg);
+}
+
+/* Dark Mode Class */
+html[data-theme="dark"] {
+    --bg-color: var(--dark-bg);
+    --text-color: var(--dark-text);
+    --sidebar-bg: var(--dark-sidebar-bg);
+    --border-color: var(--dark-border);
+    --card-bg: var(--dark-card-bg);
+    --header-bg: var(--dark-header-bg);
+    --shadow: var(--dark-shadow);
+    --hover-bg: var(--dark-hover-bg);
+}
+
+/* Apply Theme Colors */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar {
+    background: var(--sidebar-bg);
+    box-shadow: var(--shadow);
+}
+
+.top-header {
+    background-color: var(--header-bg);
+    border-bottom-color: var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.data-table,
+.chart-card,
+.kpi-card,
+.recent-section {
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    color: var(--text-color);
+}
+
+.data-table thead {
+    background-color: var(--hover-bg);
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+.search-box {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.search-box::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+/* Theme Switcher Button */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.5);
+}
+
+.theme-label {
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Smooth Transition for All Theme Changes */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Button Styles */
+.btn-primary,
+.btn-sm {
+    transition: all 0.3s ease;
+}
+
+/* Badge Styles */
+.badge {
+    transition: all 0.3s ease;
+}
+
+html[data-theme="dark"] .badge.paid {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+html[data-theme="dark"] .badge.pending {
+    background-color: rgba(255, 152, 0, 0.2);
+    color: #ff9800;
+}
+
+html[data-theme="dark"] .badge.cancelled {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-color);
+    opacity: 0.5;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+/* Chart Text Color */
+html[data-theme="dark"] canvas {
+    filter: brightness(0.9);
+}
+
+/* Table Borders */
+.data-table td {
+    border-bottom-color: var(--border-color);
+}
+
+/* KPI Card Hover Effect */
+.kpi-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+/* Modal/Overlay for Dark Mode */
+.modal {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+.modal-footer {
+    border-top-color: var(--border-color);
+}
