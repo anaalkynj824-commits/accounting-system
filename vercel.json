@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "env": {
+    "FLASK_ENV": "production",
+    "FLASK_APP": "run.py",
+    "DATABASE_URL": "@db_url",
+    "SECRET_KEY": "@secret_key",
+    "JWT_SECRET_KEY": "@jwt_secret_key",
+    "AIVEN_HOST": "@aiven_host",
+    "AIVEN_PORT": "@aiven_port",
+    "AIVEN_USER": "@aiven_user",
+    "AIVEN_PASSWORD": "@aiven_password",
+    "AIVEN_DB": "@aiven_db",
+    "AIVEN_SSL": "require"
+  },
+  "buildCommand": "pip install -r backend/requirements.txt && cd backend && flask db upgrade",
+  "outputDirectory": "backend",
+  "installCommand": "pip install -r backend/requirements.txt",
+  "framework": "python",
+  "functions": {
+    "backend/run.py": {
+      "runtime": "python3.9",
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  }
+}
