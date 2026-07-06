@@ -1,0 +1,61 @@
+version: '3.9'
+
+# استخدام: docker-compose -f docker-compose.prod.yml up
+# For production with Aiven PostgreSQL
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: accounting-app-prod
+    ports:
+      - "5000:5000"
+    environment:
+      # استخدام Aiven PostgreSQL بدلاً من قاعدة البيانات المحلية
+      DATABASE_URL: postgresql://${AIVEN_USER}:${AIVEN_PASSWORD}@${AIVEN_HOST}:${AIVEN_PORT}/${AIVEN_DB}?sslmode=require
+      
+      FLASK_ENV: production
+      FLASK_APP: run.py
+      SECRET_KEY: ${SECRET_KEY}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      
+      VERCEL_ENV: production
+      VERCEL_URL: ${VERCEL_URL}
+      
+      MAIL_SERVER: ${MAIL_SERVER}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+    
+    networks:
+      - accounting-network
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Nginx Reverse Proxy (اختياري)
+  nginx:
+    image: nginx:alpine
+    container_name: accounting-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - app
+    networks:
+      - accounting-network
+    restart: unless-stopped
+
+networks:
+  accounting-network:
+    driver: bridge
