@@ -1,0 +1,145 @@
+/* Bilingual Support Styles */
+
+/* Default RTL for Arabic */
+html[data-lang="ar"] {
+    direction: rtl;
+    text-align: right;
+}
+
+/* LTR for English */
+html[data-lang="en"] {
+    direction: ltr;
+    text-align: left;
+}
+
+/* Language Switcher */
+.language-switcher {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    justify-content: center;
+}
+
+.lang-btn {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.lang-btn.active {
+    background-color: rgba(255,255,255,0.3);
+    border-color: white;
+    color: white;
+}
+
+/* RTL/LTR Specific Adjustments */
+html[data-lang="ar"] .sidebar {
+    border-left: 0;
+    border-right: 4px solid rgba(255,255,255,0.1);
+}
+
+html[data-lang="en"] .sidebar {
+    border-right: 0;
+    border-left: 4px solid rgba(255,255,255,0.1);
+}
+
+html[data-lang="ar"] .nav-link {
+    border-left: 4px solid transparent;
+    border-right: 0;
+}
+
+html[data-lang="ar"] .nav-link.active,
+html[data-lang="ar"] .nav-link:hover {
+    border-left-color: var(--primary-color);
+}
+
+html[data-lang="en"] .nav-link {
+    border-right: 4px solid transparent;
+    border-left: 0;
+}
+
+html[data-lang="en"] .nav-link.active,
+html[data-lang="en"] .nav-link:hover {
+    border-right-color: var(--primary-color);
+}
+
+/* Adjust padding for RTL/LTR */
+html[data-lang="ar"] .nav-link {
+    padding-right: 20px;
+    padding-left: 15px;
+}
+
+html[data-lang="en"] .nav-link {
+    padding-left: 20px;
+    padding-right: 15px;
+}
+
+/* Table Text Alignment */
+html[data-lang="ar"] .data-table th,
+html[data-lang="ar"] .data-table td {
+    text-align: right;
+}
+
+html[data-lang="en"] .data-table th,
+html[data-lang="en"] .data-table td {
+    text-align: left;
+}
+
+/* Button Alignment */
+html[data-lang="ar"] .btn-primary,
+html[data-lang="ar"] .btn-sm {
+    float: right;
+    margin-left: 10px;
+}
+
+html[data-lang="en"] .btn-primary,
+html[data-lang="en"] .btn-sm {
+    float: left;
+    margin-right: 10px;
+}
+
+/* Header Flex Direction */
+html[data-lang="ar"] .header-left {
+    flex-direction: row-reverse;
+}
+
+html[data-lang="en"] .header-left {
+    flex-direction: row;
+}
+
+/* Sidebar Footer */
+html[data-lang="ar"] .sidebar-footer {
+    text-align: center;
+}
+
+html[data-lang="en"] .sidebar-footer {
+    text-align: center;
+}
+
+/* KPI Card Adjustments */
+html[data-lang="ar"] .kpi-card {
+    border-left: 5px solid;
+    border-right: 0;
+}
+
+html[data-lang="en"] .kpi-card {
+    border-right: 5px solid;
+    border-left: 0;
+}
+
+/* Smooth Transitions */
+html, body, * {
+    transition: direction 0.3s ease, text-align 0.3s ease;
+}
