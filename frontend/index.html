@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-lang="ar">
+<html lang="ar" dir="rtl" data-lang="ar" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/i18n.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
 </head>
 <body>
     <div class="app-container">
@@ -17,6 +18,13 @@
                 <p data-ar="نظام إدارة مالية ذكي" data-en="Smart Financial Management System">نظام إدارة مالية ذكي</p>
             </div>
             
+            <!-- Theme Switcher -->
+            <div class="theme-switcher">
+                <span class="theme-label" data-ar="المظهر" data-en="Theme">المظهر</span>
+                <button class="theme-toggle-btn" title="Switch Theme">🌙</button>
+            </div>
+            
+            <!-- Language Switcher -->
             <div class="language-switcher">
                 <button class="lang-btn active" data-lang="ar">العربية</button>
                 <button class="lang-btn" data-lang="en">English</button>
@@ -155,41 +163,13 @@
                         </table>
                     </div>
                 </div>
-                
-                <!-- Customers Page -->
-                <div id="customers" class="page">
-                    <h1 data-ar="إدارة العملاء" data-en="Customer Management">إدارة العملاء</h1>
-                    <button class="btn-primary" data-ar="+ إضافة عميل" data-en="+ Add Customer">+ إضافة عميل</button>
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th data-ar="الاسم" data-en="Name">الاسم</th>
-                                <th data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</th>
-                                <th data-ar="الهاتف" data-en="Phone">الهاتف</th>
-                                <th data-ar="الرصيد" data-en="Balance">الرصيد</th>
-                                <th data-ar="الإجراءات" data-en="Actions">الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>أحمد علي</td>
-                                <td>ahmed@example.com</td>
-                                <td>0501234567</td>
-                                <td>5,000 ر.س</td>
-                                <td>
-                                    <button class="btn-sm" data-ar="تعديل" data-en="Edit">تعديل</button>
-                                    <button class="btn-sm" data-ar="حذف" data-en="Delete">حذف</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </main>
     </div>
     
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/theme.js"></script>
     <script src="assets/js/i18n.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/dashboard.js"></script>
